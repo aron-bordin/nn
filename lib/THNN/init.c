@@ -110,6 +110,9 @@
 #include "generic/Sigmoid.c"
 #include "THGenerateFloatTypes.h"
 
+#include "generic/PPS.c"
+#include "THGenerateFloatTypes.h"
+
 #include "generic/SmoothL1Criterion.c"
 #include "THGenerateFloatTypes.h"
 
