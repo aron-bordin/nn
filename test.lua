@@ -2124,6 +2124,21 @@ function nntest.Sigmoid()
    mytester:eq(berr, 0, torch.typename(module) .. ' - i/o backward err ', precision)
 end
 
+function nntest.PPS()
+   local ini = math.random(3,5)
+   local inj = math.random(3,5)
+   local ink = math.random(3,5)
+   local input = torch.Tensor(ini,inj,ink):zero()
+   local module = nn.PPS(2)
+
+   local err = jac.testJacobian(module,input)
+   mytester:assertlt(err,1, 'error on state ')
+
+   local ferr,berr = jac.testIO(module,input)
+   mytester:eq(ferr, 0, torch.typename(module) .. ' - i/o forward err ', precision)
+   mytester:eq(berr, 0, torch.typename(module) .. ' - i/o backward err ', precision)
+end
+
 function nntest.Softmax()
    local ini = math.random(3,5)
    local ink = math.random(3,5)
